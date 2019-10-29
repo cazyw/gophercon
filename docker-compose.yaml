@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  go:
+    container_name: gophercon
+    build:
+      context: './docker'
+      target: 'develop'
+    volumes:
+      - './:/gophercon/'
+    env_file:
+      - .env
+    environment:
+      - ENV1=${ENV1}
+      - ENV2=${ENV2}
+    ports:
+      - 8080:8080
+    working_dir: '/gophercon/'
+    command: ['/bin/sh', '-c', 'tail -f /dev/null']
+    restart: always
